@@ -13,8 +13,8 @@ namespace VM.CursoMvc.Application.AutoMapper
         {
             Mapper.CreateMap<ClienteViewModel, Cliente>();
             Mapper.CreateMap<ClienteEnderecoViewModel, Cliente>();
-            Mapper.CreateMap<Endereco, EnderecoViewModel>();
-            Mapper.CreateMap<Endereco, ClienteEnderecoViewModel>();
+            Mapper.CreateMap<EnderecoViewModel, Endereco>();
+            Mapper.CreateMap<ClienteEnderecoViewModel, Endereco>();
         }
     }
 }
