@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using AutoMapper;
 using VM.CursoMvc.Application.Interface;
+using VM.CursoMvc.Application.ViewModels;
 using VM.CursoMvc.Domain.Entities;
 using VM.CursoMvc.Infra.Data.Repository;
 
@@ -11,44 +12,35 @@ namespace VM.CursoMvc.Application
     {
         private readonly ClienteRepository _clienteRepository = new ClienteRepository();
 
-        public Cliente ObterPorCpf(string cpf)
+        public ClienteViewModel ObterPorCpf(string cpf)
         {
-           _clienteRepository.ObterPorCpf(cpf);
+            return Mapper.Map<Cliente, ClienteViewModel>(_clienteRepository.ObterPorCpf(cpf));
         }
 
-        public Cliente ObterPorEmail(string email)
+        public ClienteViewModel ObterPorEmail(string email)
         {
-           return  _clienteRepository.ObterPorEmail(email);
+            return Mapper.Map<Cliente, ClienteViewModel>(_clienteRepository.ObterPorEmail(email));
         }
 
-        public void Adicionar(Cliente cliente)
+        public ClienteViewModel ObterPorId(Guid id)
         {
-           _clienteRepository.Adicionar(cliente); 
+            return Mapper.Map<Cliente, ClienteViewModel>(_clienteRepository.ObterPorId(id));
         }
 
-        public Cliente ObterPorId(Guid id)
+        public IEnumerable<ClienteViewModel> ObterTodos()
         {
-            return _clienteRepository.ObterPorId(id);
+            return Mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteViewModel>>(_clienteRepository.ObterTodos());
         }
 
-        public IEnumerable<Cliente> ObterTodos()
+        public void Atualizar(ClienteViewModel clienteViewModel)
         {
-            return _clienteRepository.ObterTodos();
-        }
-
-        public void Atualizar(Cliente cliente)
-        {
-           _clienteRepository.Atualizar(cliente);
+            var cliente = Mapper.Map<ClienteViewModel, Cliente>(clienteViewModel);
+            _clienteRepository.Atualizar(cliente);
         }
 
         public void Remover(Guid id)
         {
             _clienteRepository.Remover(id);
-        }
-
-        public IEnumerable<Cliente> Buscar(Expression<Func<Cliente, bool>> predicate)
-        {
-           return _clienteRepository.Buscar(predicate);
         }
 
         public int SaveChanges()
@@ -60,6 +52,16 @@ namespace VM.CursoMvc.Application
         {
             _clienteRepository.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public void Adicionar(ClienteEnderecoViewModel clienteEnederecoViewModel)
+        {
+            var cliente = Mapper.Map<ClienteEnderecoViewModel, Cliente>(clienteEnederecoViewModel);
+            var endereco = Mapper.Map<ClienteEnderecoViewModel, Endereco>(clienteEnederecoViewModel);
+
+            cliente.Enderecos.Add(endereco);
+
+            _clienteRepository.Adicionar(cliente);
         }
     }
 }
