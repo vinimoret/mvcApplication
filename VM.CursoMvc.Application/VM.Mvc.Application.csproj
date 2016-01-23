@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,10 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteAppService.cs" />
+    <Compile Include="Interface\IClienteAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ClienteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interface\" />
+    <ProjectReference Include="..\src\VM.CursoMvc.Domain\VM.Mvc.Domain.csproj">
+      <Project>{40b5be11-6047-4ed1-b8c9-c667679e81fa}</Project>
+      <Name>VM.Mvc.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\VM.CursoMvc.Infra.Data\VM.Mvc.Infra.Data.csproj">
+      <Project>{08d87ced-4144-41fe-9d7b-499db5f2f064}</Project>
+      <Name>VM.Mvc.Infra.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
