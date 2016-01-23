@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using VM.CursoMvc.Domain.Entities;
 
 namespace VM.CursoMvc.Application.ViewModels
 {
