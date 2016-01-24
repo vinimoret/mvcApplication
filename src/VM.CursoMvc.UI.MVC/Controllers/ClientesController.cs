@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using VM.CursoMvc.Application;
 using VM.CursoMvc.Application.ViewModels;
+using VM.CursoMvc.Infra.CrossCuting.MvcFilters;
 
 namespace VM.CursoMvc.UI.MVC.Models
 {
+    [GlobalErrorHandler]
     public class ClientesController : Controller
     {
         private readonly ClienteAppService _clienteAppService = new ClienteAppService();

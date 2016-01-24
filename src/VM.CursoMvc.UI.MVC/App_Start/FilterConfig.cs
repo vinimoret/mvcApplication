@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using VM.CursoMvc.Infra.CrossCuting.MvcFilters;
 
 namespace VM.CursoMvc.UI.MVC
 {
@@ -8,6 +9,7 @@ namespace VM.CursoMvc.UI.MVC
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new GlobalErrorHandler());
         }
     }
 }
