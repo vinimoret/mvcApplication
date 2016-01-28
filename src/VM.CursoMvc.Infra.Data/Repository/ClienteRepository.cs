@@ -20,14 +20,18 @@ namespace VM.CursoMvc.Infra.Data.Repository
             using (var cn = Db.Database.Connection)
             {
                 cn.Open();
-                cn.Query<Cliente, Endereco, Cliente>(sql, (c, e) =>
+                var cliente = cn.Query<Cliente, Endereco, Cliente>(sql, (c, e) =>
                 {
                     c.Enderecos.Add(e);
                     return c;
                 },
                     new {cpf = cpf}
                     );
+                return cliente.FirstOrDefault();
+
             }
+
+
         }
 
         public Cliente ObterPorEmail(string email)
@@ -40,13 +44,15 @@ namespace VM.CursoMvc.Infra.Data.Repository
             using (var cn = Db.Database.Connection)
             {
                 cn.Open();
-                cn.Query<Cliente, Endereco, Cliente>(sql, (c, e) =>
+               var cliente =  cn.Query<Cliente, Endereco, Cliente>(sql, (c, e) =>
                 {
                     c.Enderecos.Add(e);
                     return c;
                 },
                 new { email = email}
                 );
+
+                return cliente.FirstOrDefault();
             }
         }
 
