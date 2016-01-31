@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{40B5BE11-6047-4ED1-B8C9-C667679E81FA}</ProjectGuid>
+    <ProjectGuid>{494080BB-8A39-47C8-A381-296601DF9525}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VM.CursoMvc.Domain</RootNamespace>
-    <AssemblyName>VM.CursoMvc.Domain</AssemblyName>
+    <RootNamespace>VM.CursoMvc.Infra.CrossCuting.IoC</RootNamespace>
+    <AssemblyName>VM.CursoMvc.Infra.CrossCuting.IoC</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,18 +30,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Cliente.cs" />
-    <Compile Include="Entities\Endereco.cs" />
-    <Compile Include="Interfaces\IClienteRepository.cs" />
-    <Compile Include="Interfaces\Repository\IRepository.cs" />
-    <Compile Include="Interfaces\Services\IClienteService.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="NinjectModulo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ClienteService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\VM.CursoMvc.Application\VM.Mvc.Application.csproj">
+      <Project>{0446323f-c2f0-4fd3-a598-5a1b77f178b4}</Project>
+      <Name>VM.Mvc.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VM.CursoMvc.Domain\VM.Mvc.Domain.csproj">
+      <Project>{40b5be11-6047-4ed1-b8c9-c667679e81fa}</Project>
+      <Name>VM.Mvc.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VM.CursoMvc.Infra.Data\VM.Mvc.Infra.Data.csproj">
+      <Project>{08d87ced-4144-41fe-9d7b-499db5f2f064}</Project>
+      <Name>VM.Mvc.Infra.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

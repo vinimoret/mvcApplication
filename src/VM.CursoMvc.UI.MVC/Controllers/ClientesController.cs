@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Net;
 using System.Web.Mvc;
-using VM.CursoMvc.Application;
+using VM.CursoMvc.Application.Interface;
 using VM.CursoMvc.Application.ViewModels;
 using VM.CursoMvc.Infra.CrossCuting.MvcFilters;
 
-namespace VM.CursoMvc.UI.MVC.Models
+namespace VM.CursoMvc.UI.MVC.Controllers
 {
     [GlobalErrorHandler]
     public class ClientesController : Controller
     {
-        private readonly ClienteAppService _clienteAppService = new ClienteAppService();
+        private readonly IClienteAppService _clienteAppService;
+
+        public ClientesController(IClienteAppService clienteAppService)
+        {
+            _clienteAppService = clienteAppService;
+        }
 
         // GET: Clientes
         public ActionResult Index()

@@ -11,6 +11,7 @@ namespace VM.CursoMvc.Application.Interface
         ClienteViewModel ObterPorId(Guid id);
         IEnumerable<ClienteViewModel> ObterTodos();
         void Atualizar(ClienteViewModel obj);
+        void Adicionar(ClienteEnderecoViewModel obj);
         void Remover(Guid id);
         int SaveChanges();
     }

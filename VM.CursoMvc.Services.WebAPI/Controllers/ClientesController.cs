@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using VM.CursoMvc.Application;
+using VM.CursoMvc.Application.Interface;
 using VM.CursoMvc.Application.ViewModels;
 
 namespace VM.CursoMvc.Services.WebAPI.Controllers
 {
     public class ClientesController : ApiController
     { 
-        private readonly ClienteAppService _clienteAppService = new ClienteAppService();
+        private readonly IClienteAppService _clienteAppService;
+
+        public ClientesController(IClienteAppService clienteAppService)
+        {
+            _clienteAppService = clienteAppService;
+        }
 
         // GET: api/Clientes
         public IEnumerable<ClienteViewModel> Get()
