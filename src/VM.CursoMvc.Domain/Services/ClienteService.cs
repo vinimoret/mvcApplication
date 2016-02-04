@@ -53,6 +53,7 @@ namespace VM.CursoMvc.Domain.Services
         public void Adicionar(Cliente cliente)
         {
             _clienteRepository.Adicionar(cliente);
+            SaveChanges();
         }
         public void Dispose()
         {

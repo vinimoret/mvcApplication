@@ -8,7 +8,7 @@ using VM.CursoMvc.Domain.Interfaces.Services;
 
 namespace VM.CursoMvc.Application
 {
-    public class ClienteAppService : IClienteAppService
+    public class ClienteAppService : AppService, IClienteAppService
     {
         private readonly IClienteService _clienteService;
 
@@ -66,8 +66,12 @@ namespace VM.CursoMvc.Application
             var endereco = Mapper.Map<ClienteEnderecoViewModel, Endereco>(clienteEnederecoViewModel);
 
             cliente.Enderecos.Add(endereco);
+            
+            BeginTransaction();
 
             _clienteService.Adicionar(cliente);
+
+            Commit();
         }
     }
 }
